@@ -22,7 +22,8 @@ public class AbrigoService {
     @Autowired
     private PetRepository petRepository;
 
-    public List<AbrigoDto> listar() {
+    public List<AbrigoDto> listar()
+    {
         return abrigoRepository
                 .findAll()
                 .stream()
@@ -30,8 +31,10 @@ public class AbrigoService {
                 .toList();
     }
 
-    public void cadatrar(CadastroAbrigoDto dto) {
-        boolean jaCadastrado = abrigoRepository.existsByNomeOrTelefoneOrEmail(dto.nome(), dto.telefone(), dto.email());
+    public void cadatrar(CadastroAbrigoDto dto)
+    {
+        boolean jaCadastrado =
+                abrigoRepository.existsByNomeOrTelefoneOrEmail(dto.nome(), dto.telefone(), dto.email());
 
         if (jaCadastrado) {
             throw new ValidacaoException("Dados já cadastrados para outro abrigo!");
@@ -40,7 +43,8 @@ public class AbrigoService {
         abrigoRepository.save(new Abrigo(dto));
     }
 
-    public List<PetDto> listarPetsDoAbrigo(String idOuNome) {
+    public List<PetDto> listarPetsDoAbrigo(String idOuNome)
+    {
         Abrigo abrigo = carregarAbrigo(idOuNome);
 
         return petRepository
@@ -50,7 +54,8 @@ public class AbrigoService {
                 .toList();
     }
 
-    public Abrigo carregarAbrigo(String idOuNome) {
+    public Abrigo carregarAbrigo(String idOuNome)
+    {
         Optional<Abrigo> optional;
         try {
             Long id = Long.parseLong(idOuNome);

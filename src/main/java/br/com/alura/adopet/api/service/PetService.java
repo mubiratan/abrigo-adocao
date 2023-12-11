@@ -11,12 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PetService {
-
+public class PetService
+{
     @Autowired
     private PetRepository repository;
 
-    public List<PetDto> buscarPetsDisponiveis() {
+    public List<PetDto> buscarPetsDisponiveis()
+    {
         return repository
                 .findAllByAdotadoFalse()
                 .stream()
@@ -24,7 +25,8 @@ public class PetService {
                 .toList();
     }
 
-    public void cadastrarPet(Abrigo abrigo, CadastroPetDto dto) {
+    public void cadastrarPet(Abrigo abrigo, CadastroPetDto dto)
+    {
         repository.save(new Pet(dto, abrigo));
     }
 }
